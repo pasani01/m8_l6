@@ -40,7 +40,6 @@ async def length_text(text: str = 'test'):
     s = len(text)
     return {'message': f'{text} uzunlugu {s} dir'}
 
-
 @app.get('/convert')
 async def convert_text(text : str='hello', upper : str ='false'):
     if upper =='true':
@@ -51,4 +50,23 @@ async def convert_text(text : str='hello', upper : str ='false'):
         return {'message': f'{s}'}
 
     return {'message': f'hatali giris yaptiniz'}
+
+@app.get('/user/{name}')
+async def get_user(name: str ='null', age: int =None ,country: str = None):
+    return {'message':
+            {
+                'name':name,
+                'age':age,
+                'country': country
+            }
+        }
+
+@app.get('/multiply/{num}')
+def make_multiply(num:int = 0 ,gacha: int =1):
+    s=[]
+    q=0
+    for i in range(0,gacha):
+        q=q+num
+        s.append(q)
     
+    return {'result': s}
